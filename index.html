@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Le Bistrot Gourmand — Chambéry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Source+Sans+3:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241f1a;
+    --slate:#33413c;
+    --slate-deep:#28352f;
+    --chalk:#f4efe4;
+    --cream:#f7f2e6;
+    --cream-deep:#eee5cf;
+    --mustard:#c98a2c;
+    --white:#fffdf8;
+    --line:rgba(36,31,26,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;color-scheme:light;}
+  body{
+    background:var(--cream);color:var(--ink);
+    font-family:'Source Sans 3',sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;color-scheme:light;
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'Source Sans 3',sans-serif;font-weight:700;
+    font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--mustard);white-space:nowrap;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--slate-deep);color:var(--chalk);
+    border-bottom:3px solid var(--mustard);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+    padding:0.8rem 1.5rem;gap:1rem;
+  }
+  .brand{font-family:'Caveat',cursive;font-size:1.9rem;white-space:nowrap;}
+  .brand span{color:var(--mustard);}
+  nav.links{display:flex;gap:1.3rem;overflow-x:auto;scrollbar-width:none;}
+  nav.links::-webkit-scrollbar{display:none;}
+  nav.links a{
+    font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;
+    text-decoration:none;color:rgba(244,239,228,0.78);white-space:nowrap;transition:color .2s;
+  }
+  nav.links a:hover{color:var(--mustard);}
+  .call-btn{
+    font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase;
+    background:var(--mustard);color:var(--slate-deep);padding:0.55rem 0.9rem;text-decoration:none;
+    white-space:nowrap;flex-shrink:0;
+  }
+
+  /* ---------- hero (chalkboard) ---------- */
+  .hero{
+    position:relative;color:var(--chalk);
+    background-color:var(--slate-deep);
+    background-image:
+      radial-gradient(ellipse 700px 350px at 20% 20%, rgba(255,255,255,0.03), transparent 60%),
+      radial-gradient(ellipse 500px 300px at 80% 70%, rgba(255,255,255,0.025), transparent 60%);
+    padding:5rem 1.5rem 4.5rem;overflow:hidden;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;text-align:center;}
+  .hero .eyebrow{color:var(--mustard);margin-bottom:1.2rem;}
+  .hero h1{
+    font-family:'Caveat',cursive;font-weight:700;
+    font-size:clamp(3.6rem,11vw,6.5rem);line-height:0.9;color:var(--chalk);
+  }
+  .hero .underline{
+    display:block;width:min(420px,70%);height:3px;background:var(--mustard);
+    margin:0.3rem auto 0;opacity:0.85;
+  }
+  .hero p.sub{
+    font-family:'Source Sans 3',sans-serif;font-size:1.02rem;max-width:32rem;
+    margin:1.5rem auto 0;color:rgba(244,239,228,0.88);
+  }
+  .hero .meta{
+    display:flex;flex-wrap:wrap;gap:0.5rem 1.1rem;justify-content:center;margin-top:2rem;
+    font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:0.78rem;color:rgba(244,239,228,0.85);
+  }
+  .hero .meta span.dot::before{content:"·";margin:0 0.55rem;color:var(--mustard);}
+
+  /* ---------- info strip ---------- */
+  .info-strip{
+    max-width:1180px;margin:0 auto;position:relative;z-index:5;
+    background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);
+    box-shadow:0 16px 36px rgba(36,31,26,0.14);
+  }
+  .info-strip .cell{padding:1.5rem 1.4rem;border-right:1px solid var(--line);}
+  .info-strip .cell:last-child{border-right:none;}
+  .info-strip .cell .eyebrow{display:block;margin-bottom:0.5rem;}
+  .info-strip .cell .val{font-weight:600;font-size:0.92rem;}
+  .info-strip .cell .val small{display:block;font-weight:400;color:#5c5648;font-size:0.78rem;margin-top:0.15rem;}
+
+  /* ---------- section shell ---------- */
+  section{max-width:1180px;margin:0 auto;padding:5.2rem 1.5rem;}
+  .section-head{
+    display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;
+    margin-bottom:2.6rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);
+  }
+  .section-head h2{font-size:clamp(2.3rem,4.3vw,3.4rem);}
+  .section-head .eyebrow{transform:translateY(-6px);}
+
+  /* ---------- card grid ---------- */
+  .card-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1.5px;background:var(--line);border:1px solid var(--line);
+  }
+  .card{background:var(--white);padding:1.7rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:0.8rem;}
+  .card h3{font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:1.03rem;}
+  .card .price{font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:0.92rem;color:var(--mustard);white-space:nowrap;}
+  .card p{font-size:0.85rem;color:#5c5648;}
+
+  .subhead{
+    font-family:'Caveat',cursive;font-weight:700;font-size:1.9rem;
+    color:var(--slate);margin:2.6rem 0 1rem;
+  }
+  .subhead:first-child{margin-top:0;}
+
+  /* ---------- dessert board callout ---------- */
+  .dessert-board{
+    background:var(--slate-deep);color:var(--chalk);padding:2.4rem 2rem;border-radius:2px;
+    margin-bottom:2rem;
+  }
+  .dessert-board .amt-line{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.6rem;
+    border-bottom:2px solid var(--mustard);padding-bottom:0.9rem;margin-bottom:1.3rem;
+  }
+  .dessert-board .amt-line h3{color:var(--chalk);font-size:1.9rem;}
+  .dessert-board .amt-line .amt{font-family:'Caveat',cursive;font-weight:700;font-size:2.2rem;color:var(--mustard);}
+  .dessert-board ul{list-style:none;}
+  .dessert-board li{
+    padding:0.55rem 0;font-size:0.95rem;color:rgba(244,239,228,0.9);
+    border-bottom:1px dotted rgba(244,239,228,0.18);
+  }
+  .dessert-board li:last-child{border-bottom:none;}
+
+  .cafe-line{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.6rem;
+    background:var(--white);border:1px solid var(--line);padding:1.3rem 1.6rem;
+  }
+  .cafe-line .name{font-weight:600;}
+  .cafe-line .price{font-family:'Source Sans 3',sans-serif;font-weight:700;color:var(--mustard);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--slate-deep);color:rgba(244,239,228,0.8);padding:3.6rem 1.5rem 2.2rem;}
+  .foot-inner{
+    max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;
+    gap:2.4rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(244,239,228,0.14);
+  }
+  footer h3{color:var(--chalk);font-family:'Caveat',cursive;font-size:2.3rem;margin-bottom:0.8rem;}
+  footer p{font-size:0.9rem;max-width:24rem;}
+  .foot-links a{display:block;text-decoration:none;font-size:0.9rem;padding:0.3rem 0;color:rgba(244,239,228,0.82);}
+  .foot-links a:hover{color:var(--mustard);}
+  .bottom-line{
+    max-width:1180px;margin:1.4rem auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;
+    font-family:'Source Sans 3',sans-serif;font-size:0.68rem;color:rgba(244,239,228,0.5);
+  }
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:760px){
+    .info-strip{grid-template-columns:1fr 1fr;}
+    .info-strip .cell:nth-child(2){border-right:none;}
+    .info-strip .cell{border-bottom:1px solid var(--line);}
+    section{padding:3.6rem 1.2rem;}
+    .foot-inner{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none;opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Le Bistrot <span>Gourmand</span></div>
+    <nav class="links">
+      <a href="#salades">Salades</a>
+      <a href="#poissons">Poissons</a>
+      <a href="#viandes">Viandes</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#infos">Infos</a>
+    </nav>
+    <a class="call-btn" href="#infos">Réserver</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Chambéry · Cuisine française</span>
+    <h1>Le Bistrot Gourmand</h1>
+    <span class="underline"></span>
+    <p class="sub">Une cuisine de bistrot généreuse, à l'ardoise, entre classiques revisités et suggestions du moment — Rue du Pré Pagnon, à Chambéry.</p>
+    <div class="meta">
+      <span>4,7 · 163 avis</span>
+      <span class="dot">Cuisine française</span>
+      <span class="dot">Réservation possible</span>
+    </div>
+  </div>
+</section>
+
+<div class="info-strip reveal">
+  <div class="cell">
+    <span class="eyebrow">Adresse</span>
+    <div class="val">7 Rue du Pré Pagnon<br><small>73000 Chambéry</small></div>
+  </div>
+  <div class="cell">
+    <span class="eyebrow">Service</span>
+    <div class="val">11h30 – 14h00<br><small>Fermé le week-end</small></div>
+  </div>
+  <div class="cell">
+    <span class="eyebrow">Jours d'ouverture</span>
+    <div class="val">Lundi – Vendredi<br><small>Midi uniquement</small></div>
+  </div>
+  <div class="cell">
+    <span class="eyebrow">Avis</span>
+    <div class="val">4,7 / 5<br><small>163 avis Google</small></div>
+  </div>
+</div>
+
+<section id="salades">
+  <div class="section-head reveal">
+    <h2>Les Salades</h2>
+    <span class="eyebrow">Fraîcheur & générosité</span>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="top"><h3>Salade César</h3><span class="price">16,90 €</span></div>
+      <p>Crispy de poulet, œuf, croûtons, parmesan.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Salade du Bistrot</h3><span class="price">17,90 €</span></div>
+      <p>Croustillant à la tome, jambon cru, noix, croûtons.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Salade Panko</h3><span class="price">17,90 €</span></div>
+      <p>Crevettes panko, gravlax de saumon aux agrumes.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Foie Gras de Canard Maison</h3><span class="price">12,90 €</span></div>
+      <p>Pain d'épice, sel de Camargue.</p>
+    </div>
+  </div>
+</section>
+
+<section id="poissons">
+  <div class="section-head reveal">
+    <h2>Les Poissons</h2>
+    <span class="eyebrow">Suggestions du chef</span>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="top"><h3>Fish and Chips de Cabillaud</h3><span class="price">19,90 €</span></div>
+      <p>Sauce tartare.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Risotto St-Jacques</h3><span class="price">24,90 €</span></div>
+      <p>Coulis de homard.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Rognon et Ris de Veau aux Morilles</h3><span class="price">22,90 €</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="viandes">
+  <div class="section-head reveal">
+    <h2>Les Viandes</h2>
+    <span class="eyebrow">Pièces & spécialités du bistrot</span>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="top"><h3>Entrecôte Charolaise</h3><span class="price">24,90 €</span></div>
+      <p>Crème de Saint-Marcellin.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Onglet de Bœuf Black Angus</h3><span class="price">22,90 €</span></div>
+      <p>Sauce poivre et whisky.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Burger Savoyard</h3><span class="price">19,90 €</span></div>
+      <p>Tome, raclette, lard grillé, oignons rouges.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Tartare du Bistrot</h3><span class="price">19,90 €</span></div>
+      <p>Câpres, parmesan, pomodori.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Wok Thaï Poulet-Crevettes</h3><span class="price">19,90 €</span></div>
+      <p>Nouilles chinoises.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Suprême de Poulet Fermier</h3><span class="price">23,90 €</span></div>
+      <p>Vin jaune, morilles et girolles.</p>
+    </div>
+    <div class="card">
+      <div class="top"><h3>Ravioles Savoyardes</h3><span class="price">20,90 €</span></div>
+      <p>Reblochon, jambon cru, salade.</p>
+    </div>
+  </div>
+</section>
+
+<section id="desserts">
+  <div class="section-head reveal">
+    <h2>Desserts & Café Gourmand</h2>
+    <span class="eyebrow">Fait maison</span>
+  </div>
+
+  <div class="dessert-board reveal">
+    <div class="amt-line">
+      <h3>Desserts du Jour</h3>
+      <span class="amt">6,90 €</span>
+    </div>
+    <ul>
+      <li>Tiramisu Amaretto</li>
+      <li>Crème Citron et son Crumble</li>
+      <li>Coulant Chocolat, Glace Caramel Beurre Salé</li>
+      <li>Profiteroles Sauce Chocolat</li>
+      <li>Crème Brûlée à la Vanille</li>
+      <li>Baba au Rhum Dom Papa et sa Glace</li>
+      <li>Soupe de Mangue Passion et son Sorbet</li>
+    </ul>
+  </div>
+
+  <div class="cafe-line reveal">
+    <span class="name">Café Gourmand</span>
+    <span class="price">7,90 €</span>
+  </div>
+</section>
+
+<section id="infos">
+  <div class="section-head reveal">
+    <h2>Nous Trouver</h2>
+    <span class="eyebrow">Rue du Pré Pagnon, Chambéry</span>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <h3>Adresse</h3>
+      <p>7 Rue du Pré Pagnon, 73000 Chambéry</p>
+    </div>
+    <div class="card">
+      <h3>Horaires</h3>
+      <p>Lundi–Vendredi, 11h30–14h00. Fermé samedi & dimanche.</p>
+    </div>
+    <div class="card">
+      <h3>Ce qu'on en dit</h3>
+      <p>4,7/5 sur 163 avis Google.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <h3>Le Bistrot Gourmand</h3>
+      <p>Cuisine française à Chambéry, à l'ardoise : salades, poissons, viandes et desserts maison, midi en semaine.</p>
+    </div>
+    <div class="foot-links">
+      <span class="eyebrow" style="color:#c98a2c;">Explorer</span>
+      <a href="#salades">Les Salades</a>
+      <a href="#poissons">Les Poissons</a>
+      <a href="#viandes">Les Viandes</a>
+      <a href="#desserts">Desserts</a>
+    </div>
+    <div class="foot-links">
+      <span class="eyebrow" style="color:#c98a2c;">Contact</span>
+      <a href="https://www.google.com/maps/search/?api=1&query=7+Rue+du+Pr%C3%A9+Pagnon+73000+Chambery" target="_blank" rel="noopener">Itinéraire</a>
+      <span style="font-size:0.9rem;padding:0.3rem 0;display:block;">7 Rue du Pré Pagnon, 73000</span>
+    </div>
+  </div>
+  <div class="bottom-line">
+    <span>Le Bistrot Gourmand — Chambéry</span>
+    <span>Midi en semaine, fermé le week-end</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
